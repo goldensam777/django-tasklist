@@ -1,8 +1,8 @@
 from django.db import models
 from django.conf import settings
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.utils import timezone
-from django.forms.util import to_current_timezone
+from django.forms.utils import to_current_timezone
 
 from model_utils import Choices
 
@@ -35,6 +35,7 @@ class Task(TimeStampedModel):
                                    null=True,
                                    blank=True,
                                    editable=False,
+                                   on_delete=models.SET_NULL,
                                    related_name='tasks')
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
@@ -46,6 +47,7 @@ class Task(TimeStampedModel):
                                       null=True,
                                       blank=True,
                                       verbose_name="Assigned To",
+                                      on_delete=models.SET_NULL,
                                       related_name='assigned_tasks')
     type = models.PositiveIntegerField(choices=TYPE_CHOICES,
                                        default=TYPE_CHOICES.task)
@@ -60,6 +62,7 @@ class Task(TimeStampedModel):
                                     null=True,
                                     blank=True,
                                     editable=False,
+                                    on_delete=models.SET_NULL,
                                     related_name='reviewed_tasks')
 
     class Meta:

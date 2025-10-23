@@ -3,7 +3,7 @@ import json
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import (ListView, CreateView, DetailView, UpdateView,
     TemplateView, View)
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
 from django.db.models import Count
